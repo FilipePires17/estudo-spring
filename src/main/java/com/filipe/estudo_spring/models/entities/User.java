@@ -1,4 +1,4 @@
-package com.filipe.estudo_spring.models;
+package com.filipe.estudo_spring.models.entities;
 
 import java.time.LocalDateTime;
 
@@ -16,13 +16,13 @@ import lombok.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private String name;
 
     @Column(nullable = false)
-    private int age;
+    private Integer age;
 
     @Column(unique = true, nullable = false)
     @NotNull 

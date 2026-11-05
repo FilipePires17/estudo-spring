@@ -1,0 +1,5 @@
+# Ignore Java source files so Prettier doesn't attempt to format them
+**/*.java
+target/
+.mvn/
+
