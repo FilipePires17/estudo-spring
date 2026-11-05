@@ -32,12 +32,8 @@ public class UserController {
             }
         }
 
-        if (pageable.getPageSize() <= 0 || pageable.getPageSize() > 100) {
-            throw new IllegalArgumentException("Page size should be between 1 and 100");
-        }
-
-        if (pageable.getPageNumber() < 0) {
-            throw new IllegalArgumentException("Page number should be equal to or greater than 0");
+        if (pageable.getPageSize() > 100) {
+            throw new IllegalArgumentException("Page size should be equal to or lower than 100");
         }
 
         Page<UserResponse> users = userService.findAll(pageable);
