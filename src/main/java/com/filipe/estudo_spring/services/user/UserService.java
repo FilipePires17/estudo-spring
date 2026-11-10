@@ -1,10 +1,13 @@
 package com.filipe.estudo_spring.services.user;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.filipe.estudo_spring.exceptions.UserNotFoundException;
 import com.filipe.estudo_spring.models.dtos.user.UserResponse;
 import com.filipe.estudo_spring.models.entities.User;
 import com.filipe.estudo_spring.repositories.users.UserRepository;
@@ -31,5 +34,15 @@ public class UserService {
         }
 
         return users.map(user -> new UserResponse(user));
+    }
+
+    public UserResponse findById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isEmpty()) {
+            throw new UserNotFoundException(id);
+        }
+
+        return new UserResponse(user.get());
     }
 }
